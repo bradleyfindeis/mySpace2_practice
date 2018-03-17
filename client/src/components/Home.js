@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Header } from 'semantic-ui-react';
+import { Header, Card, Description, Button, Grid, Container, Form } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { getPosts, newPost } from '../actions/posts';
+// import PostForm from './PostForm'
 
 class Home extends Component {
 
@@ -33,9 +34,11 @@ handleSubmit = (e) => {
   render() {
     return (
       <div>
-        <Header>Welcome: {this.props.coolPerson.name}</Header>
+
+        <Header as='h3' textAlign='center'>Welcome: {this.props.coolPerson.name}</Header>
+
         <div>
-          <form onSubmit={this.handleSubmit}>
+          <Form onSubmit={this.handleSubmit}>
             <input 
               name="title"
               onChange={this.handleChange}
@@ -48,23 +51,40 @@ handleSubmit = (e) => {
               value={this.state.body}
               placeholder="Enter Your Post"
             />
-            <button type="submit"> Add Post </button>
-          </form>
-          { this.props.posts.map( p => {
-            return(
-              <div>
-                <h3>{p.title}</h3>
-                <p>{p.body}</p>
-                <button>Edit Post</button>
-                <button>Delete Post</button>
-              </div>
-            )
-          })}
+            <Button color="green" type="submit"> Add Post </Button>
+          </Form>
+            <div>
+                <Card.Group>
+                  { this.props.posts.map( p => {
+                    return(
+                      <div>
+                        <Container>
+                          <div>
+                          <Card>
+                            <Card.Content>
+                            <Card.Header>
+                              {p.title}
+                            </Card.Header>
+                            <Card.Description>
+                              {p.body}
+                            </Card.Description>
+                          </Card.Content>
+                          <Button>Edit Post</Button>
+                          <Button color="red">Delete Post</Button>
+                        </Card>
+                        </div>
+                      </Container>
+                    </div>
+                    )
+                  })}
+                </Card.Group>
+            </div>
         </div>
       </div>
     );
   }
 }
+
 
 const mapStateToProps = (state) => {
   return {

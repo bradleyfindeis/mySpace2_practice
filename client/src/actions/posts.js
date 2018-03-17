@@ -15,3 +15,18 @@ export const newPost = (post) => dispatch => {
       dispatch({ type: 'ADD_POST', post: res.data,})
     })
   } 
+
+
+  export const updatePost = (post) => {
+    return (dispatch) => {
+      axios.put(`/api/apps/${post.id}`, { post } )
+        .then( res => dispatch({ type: 'UPDATE_POST', post: res.data }) )
+    }
+  }
+
+  export const deletePost = (id) => {
+    return (dispatch) => {
+      axios.delete(`/api/apps/${id}`)
+        .then( () => dispatch({ type: 'DELETE_POST', id }) )
+    }
+  }
