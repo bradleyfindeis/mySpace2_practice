@@ -19,14 +19,14 @@ export const newPost = (post) => dispatch => {
 
   export const updatePost = (post) => {
     return (dispatch) => {
-      axios.put(`/api/apps/${post.id}`, { post } )
+      axios.put(`/api/posts/${post.id}`, { post } )
         .then( res => dispatch({ type: 'UPDATE_POST', post: res.data }) )
     }
   }
 
   export const deletePost = (id) => {
     return (dispatch) => {
-      axios.delete(`/api/apps/${id}`)
+      axios.delete(`/api/posts/${id}`)
         .then( () => dispatch({ type: 'DELETE_POST', id }) )
     }
   }

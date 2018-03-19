@@ -1,6 +1,5 @@
 class Api::PostsController < ApplicationController
 
-
   def index
     @posts = current_user.posts.all
       render json: @posts
@@ -24,13 +23,15 @@ class Api::PostsController < ApplicationController
   end 
 
   def destroy
+    @post.destroy
   end 
 
 
   private
 
   def set_posts
-
+    binding.pry
+    @post = Post.find(params[:id])
   end 
 
   def post_params

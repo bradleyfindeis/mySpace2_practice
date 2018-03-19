@@ -6,7 +6,7 @@ import posts from './posts';
 const rootReducer = combineReducers({
   user,
   flash,
-  posts
+  posts,
 });
 
 export default rootReducer;
